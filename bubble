@@ -1,0 +1,40 @@
+public class BubbleSort{
+    int counter = 0;
+    int recur = 0;
+    public void bubbleSort(int[] array) {
+    int n = tamanho(array);
+    int temp = 0;
+        for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            recur += 1;
+            if (array[j] > array[j + 1]) {
+                temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+                counter +=1;
+            }
+        }
+    }
+}
+    public int tamanho(int[] array) {
+        int num = 0;
+        for (int cont : array) {
+            num += 1;
+        }
+        return num;
+    }
+
+    public void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        System.out.println(counter);
+    }
+    public void printutil(String numero,int quat) {
+        System.out.println(numero + " & " + counter + " & " + recur + " & " + quat+ " \\"+ "\\" );
+        System.out.println("\\hline");
+        counter = 0;
+        recur = 0;
+    }
+}
