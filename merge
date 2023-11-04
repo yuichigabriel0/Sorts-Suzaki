@@ -1,0 +1,77 @@
+public class MergeSort {
+int counter = 0;
+int recur = 0;
+    public void SeparaMerge(int[] lista, int[] esquerda, int[] direita) {
+        int i = 0, j = 0, k = 0;
+
+        while (i < tamanho(esquerda) && j < tamanho(direita)) {
+            if (esquerda[i] < direita[j]) {
+                lista[k] = esquerda[i];
+                i++;
+                counter +=1;
+            } else {
+                lista[k] = direita[j];
+                j++;
+                counter += 1;
+            }
+            k++;
+        }
+
+        while (i < tamanho(esquerda)) {
+            lista[k] = esquerda[i];
+            i++;
+            k++;
+        }
+
+        while (j < tamanho(direita)) {
+            lista[k] = direita[j];
+            j++;
+            k++;
+        }
+    }
+
+    public void mergeSort(int[] lista) {
+
+        if (tamanho(lista) > 1) {
+            int meio = tamanho(lista) / 2;
+            int[] esquerda = new int[meio];
+            int[] direita = new int[tamanho(lista) - meio];
+
+            for (int i = 0; i < meio; i++) {
+                esquerda[i] = lista[i];
+            }
+
+            for (int i = meio; i < tamanho(lista); i++) {
+                direita[i - meio] = lista[i];
+            }
+
+            mergeSort(esquerda);
+            recur += 1;
+            mergeSort(direita);
+            recur += 1;
+
+            SeparaMerge(lista, esquerda, direita);
+        }
+
+}public int tamanho(int[] array) {
+        int num = 0;
+        for (int cont : array) {
+            num += 1;
+        }
+        return num;
+    }
+    public void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        System.out.println(counter);
+        System.out.println(recur);
+    }
+    public void printutil(String numero,int quat) {
+        System.out.println(numero + " & " + counter + " & " + recur + " & " + quat + "\\" + "\\" );
+        System.out.println("\\hline");
+        counter = 0;
+        recur = 0;
+    }
+}
