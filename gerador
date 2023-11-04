@@ -1,0 +1,21 @@
+public class gerador {
+    public int[] gerador(int x,int tamanho,int t) {
+        Random geradorAleatorio = new Random(x);
+
+        int tamanhoDoVetor = tamanho;
+
+        int[] numerosAleatorios = new int[tamanhoDoVetor];
+
+        for (int i = 0; i < tamanhoDoVetor; i++) {
+            int numeroAleatorio = geradorAleatorio.nextInt(t);
+            numerosAleatorios[i] = numeroAleatorio;
+        }
+        return numerosAleatorios;
+    }
+    public void printArray(int[] array) {
+        for (int num : array) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
