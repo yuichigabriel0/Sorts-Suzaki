@@ -1,0 +1,113 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Main {
+    public static void main(String[] args) {
+
+        Random geradorAleatorio = new Random(33);
+
+        int tamanhoDoVetor = 50;
+
+        int[] numerosAleatorios = new int[tamanhoDoVetor];
+
+        for (int i = 0; i < tamanhoDoVetor; i++) {
+            int numeroAleatorio = geradorAleatorio.nextInt(100);
+            numerosAleatorios[i] = numeroAleatorio;
+        }
+
+        //definição dos sorts
+        BubbleSort b = new BubbleSort();
+        MergeSort m = new MergeSort();
+        QuickSort q = new QuickSort();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite um número: 1 -> bubble, 2 -> merge, 3 -> quick\n ");
+        if (scanner.hasNextInt()) {
+            int numero = scanner.nextInt();
+
+
+            if(numero == 1) {
+                System.out.println("===( B U B B L E  S O R T )===");
+                System.out.println("Array original:");
+                b.printArray(numerosAleatorios);
+
+                long start = System.nanoTime();
+
+                b.bubbleSort(numerosAleatorios);
+
+                long end = System.nanoTime();
+                long duration = end - start;
+                //System.out.println("Tempo -> "+ duration);
+                double segundos = duration / 1_000_000_000.0;
+                String tempoFormatado = String.format("%.6f segundos", segundos);
+                System.out.println(tempoFormatado);
+
+                System.out.println("Array ordenado:");
+                b.printArray(numerosAleatorios);
+            }
+            else if(numero == 2) {
+                System.out.println("===( M E R G E  S O R T )===");
+                System.out.println("Array original:");
+                m.printArray(numerosAleatorios);
+
+                long start = System.nanoTime();
+                m.mergeSort(numerosAleatorios);
+                long end = System.nanoTime();
+                long duration = end - start;
+                //System.out.println("Tempo -> "+ duration);
+                double segundos = duration / 1_000_000_000.0;
+                String tempoFormatado = String.format("%.6f segundos", segundos);
+                System.out.println(tempoFormatado);
+
+                System.out.println("Array ordenado:");
+                m.printArray(numerosAleatorios);
+            }
+            else if(numero == 3) {
+                System.out.println("===( Q U I C K  S O R T )===");
+                System.out.println("Array original:");
+                q.printArray(numerosAleatorios);
+                long start = System.nanoTime();
+                q.quickSort(numerosAleatorios,0, q.tamanho(numerosAleatorios) -1);
+                long end = System.nanoTime();
+                long duration = end - start;
+                //System.out.println("Tempo -> "+ duration);
+                double segundos = duration / 1_000_000_000.0;
+                String tempoFormatado = String.format("%.6f segundos", segundos);
+                System.out.println(tempoFormatado);
+
+                System.out.println("Array ordenado:");
+                q.printArray(numerosAleatorios);
+            }
+           else{//50,500,1000,5000,10000
+                gerador g = new gerador();
+                int quant = 10000;
+                int t = 20000;
+                int[] lista = {33, 182, 22, 11, 832};
+                int[] listax;
+
+                for (int i = 0; i < 5; i++) {
+
+                    listax = g.gerador(lista[i], quant,t);
+
+                    long start = System.nanoTime();
+                    b.bubbleSort(listax);
+                    //m.mergeSort(listax);
+                    //q.quickSort(listax,0, q.tamanho(listax) -1);
+                    long end = System.nanoTime();
+                    long duration = end - start;
+                    double segundos = duration / 1_000_000_000.0;
+                    String tempoFormatado = String.format("%.6f", segundos);
+
+                    b.printutil(tempoFormatado,quant);
+                    //m.printutil(tempoFormatado,quant);
+                    //q.printutil(tempoFormatado,quant);
+
+
+                }
+
+            }
+
+            scanner.close();
+    }
+
+}}
